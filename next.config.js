@@ -78,6 +78,30 @@ module.exports = () => {
           protocol: 'https',
           hostname: 'picsum.photos',
         },
+        {
+          protocol: 'https',
+          hostname: 'images.unsplash.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'unsplash.com',
+        },
+        {
+          protocol: 'https',
+          hostname: '*.amazonaws.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'cdn.jsdelivr.net',
+        },
+        {
+          protocol: 'https',
+          hostname: 'github.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'raw.githubusercontent.com',
+        },
       ],
       unoptimized,
     },
@@ -96,6 +120,15 @@ module.exports = () => {
       })
 
       return config
+    },
+    // Vercel-specific optimizations
+    serverExternalPackages: ['gray-matter'],
+    // Suppress hydration warnings in development
+    onDemandEntries: {
+      // period (in ms) where the server will keep pages in the buffer
+      maxInactiveAge: 25 * 1000,
+      // number of pages that should be kept simultaneously without being disposed
+      pagesBufferLength: 2,
     },
   })
 }

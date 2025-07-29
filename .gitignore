@@ -45,3 +45,27 @@ yarn-error.log*
 
 # Contentlayer
 .contentlayer
+
+# Vercel
+.vercel
+
+# Build artifacts
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp

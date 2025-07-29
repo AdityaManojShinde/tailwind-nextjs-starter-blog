@@ -14,7 +14,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: [],
+    ignores: ['scripts/**/*.js'],
   },
   js.configs.recommended,
   ...compat.extends(
@@ -59,12 +59,15 @@ export default [
           aspects: ['invalidHref', 'preferButton'],
         },
       ],
+      'jsx-a11y/label-has-associated-control': 'off',
       'react/prop-types': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
       'react/no-unescaped-entities': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-var-requires': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
       '@typescript-eslint/ban-ts-comment': 'off',
+      '@next/next/no-img-element': 'warn',
     },
   },
 ]

@@ -1,13 +1,11 @@
 import { ReactNode } from 'react'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
-import type { Blog } from 'contentlayer/generated'
-import Comments from '@/components/Comments'
+import type { Blog } from '.contentlayer/generated'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
-import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 
 interface LayoutProps {
   content: CoreContent<Blog>
@@ -17,11 +15,10 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, next, prev, children }: LayoutProps) {
-  const { path, slug, date, title } = content
+  const { path, slug, date, title, headerImage, headerImageAlt } = content
 
   return (
     <SectionContainer>
-      <ScrollTopAndComment />
       <article>
         <div>
           <header>
@@ -37,17 +34,22 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
               <div>
                 <PageTitle>{title}</PageTitle>
               </div>
+              {/* Header Image */}
+              {headerImage && (
+                <div className="pt-6">
+                  <img
+                    src={headerImage}
+                    alt={headerImageAlt || title}
+                    className="mx-auto h-auto max-w-full rounded-lg shadow-lg"
+                  />
+                </div>
+              )}
             </div>
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:divide-y-0 dark:divide-gray-700">
             <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
               <div className="prose dark:prose-invert max-w-none pt-10 pb-8">{children}</div>
             </div>
-            {siteMetadata.comments && (
-              <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
-                <Comments slug={slug} />
-              </div>
-            )}
             <footer>
               <div className="flex flex-col text-sm font-medium sm:flex-row sm:justify-between sm:text-base">
                 {prev && prev.path && (
